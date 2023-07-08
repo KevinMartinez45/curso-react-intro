@@ -6,18 +6,18 @@ import { TodoItem } from './TodoItem';
 import { TodoCreateButton } from './TodoCreateButton';
 
 
-const defaultTodos = [
-  { text: 'Cortar Cebolla', completed: true},
-  { text: 'Tomar curso React.js', completed: true},
-  { text: 'Llorar con la llorona', completed: false},
-  { text: 'LALALALALA', completed: true},
-  { text: 'LOLOLOLO', completed: true}
-]
-
 function App() {
+  let parsedTodos;
+  if(!localStorage.getItem('TODOS_V1')){
+    localStorage.setItem('TODOS_V1',JSON.stringify([]));
+    parsedTodos = [];
+  }else{
+    parsedTodos = JSON.parse(localStorage.getItem('TODOS_V1'));
+  }
+  
 
-  const [todos, setTodos] = React.useState(defaultTodos);
-  const [searchValue, setSearchValue] = React.useState();
+  const [todos, setTodos] = React.useState(parsedTodos);
+  const [searchValue, setSearchValue] = React.useState("");
   console.log(searchValue)
   
   const completedTodos = todos.filter(todo => todo.completed).length;
@@ -25,20 +25,39 @@ function App() {
 
   const searchedTodos = todos.filter(
     (todo) => {
-      const todoText = todo.text;
-      const searchText = searchValue;
+      const todoText = todo.text.toLowerCase();
+      const searchText = searchValue.toLowerCase();
       return todoText.includes(searchText);
     }
   );
 
+  const saveTodos = (newTodos) => {
+    localStorage.setItem('TODOS_V1', JSON.stringify(newTodos));
+    setTodos(newTodos)
+  };
+
+
   const completeTodo = (text) => {
+    const newTodos = [...todos];
+    const todoIndex = newTodos.findIndex(
+      todo => todo.text === text
+    )
+    newTodos[todoIndex].completed === true
+			? (newTodos[todoIndex].completed = false)
+			: (newTodos[todoIndex].completed = true);
+      saveTodos(newTodos)
+  }
+
+  const deleteTodo = (text) => {
     const newTodos = [...todos];
     const todoIndex = newTodos.findIndex(
       todo => todo.text == text
     )
-    newTodos[todoIndex].completed = true;
-    setTodos(newTodos)
+    newTodos.splice(todoIndex, 1);
+    saveTodos(newTodos)
   }
+
+  
 
   return (
     <React.Fragment>
@@ -59,6 +78,7 @@ function App() {
           text={todo.text}
           completed={todo.completed}
           onComplete={() => completeTodo(todo.text)}
+          ondelete={() => deleteTodo(todo.text)}
           />))}
       </TodoList>  
          
@@ -69,13 +89,5 @@ function App() {
     </React.Fragment>
   );
 }
-
-
-
-
-
-
-
-
 
 export default App;
