@@ -3,9 +3,8 @@ import './TodoCreateButton.css'
 
 function TodoCreateButton(props) {
   return (
-    <button className='CreateTodoButton'
     
-      >+</button>
+      <button className='CreateTodoButton'>Agregar Tarea</button>
   )
 }
 

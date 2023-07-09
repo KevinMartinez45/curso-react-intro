@@ -1,0 +1,7 @@
+.Icon-loading {
+  font-size: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40vh; /* Ajusta la altura según tus necesidades */
+  }

@@ -1,0 +1,11 @@
+
+.ContainerMostrar{
+    background-color: rgba(242, 242, 242, 0.25);
+    padding: 50px;
+    display: inline-block;
+    width: 50%;
+    margin: 10px; 
+    box-sizing: border-box; 
+    border-radius: 50px;
+    height: 50vh;
+  }

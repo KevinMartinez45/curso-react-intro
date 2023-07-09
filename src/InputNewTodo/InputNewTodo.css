@@ -1,0 +1,18 @@
+.InputStyle {
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  background-color: transparent;
+  outline: none;
+}
+  
+.text-input:focus {
+
+  border-bottom-color: #61DAFA;
+
+  }
+
+ 
+  
+  
