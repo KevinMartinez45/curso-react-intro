@@ -4,11 +4,11 @@ import { TodoContext } from '../TodoContext';
 
 function TodoSearch() {
   
-  const { searchValue,setSearchValue}=React.useContext(TodoContext)
+  const {searchValue, setSearchValue}=React.useContext(TodoContext)
 
   return (
     <input
-      placeholder="Mi nueva tarea..."
+      placeholder="Buscar"
       className="TodoSearch"
       onChange={(event) =>{
         setSearchValue(event.target.value);

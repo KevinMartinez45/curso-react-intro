@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  background: linear-gradient(90deg, #B3E8E5  15%, #3BACB6 85%);
+  background-image: linear-gradient(to bottom, #d4f7ff, #c4ffd6);
   color: #1E1E1F;
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
 }

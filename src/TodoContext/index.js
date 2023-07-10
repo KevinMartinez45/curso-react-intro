@@ -15,20 +15,23 @@ function TodoProvider({children}){
     error,
   } = useLocalStorage('TODOS_V1',[]);
   const [searchValue, setSearchValue] = React.useState("");
- 
+
+  const [openModal, setOpenModal] = React.useState(false);
+
+  const [saveNewTodo, setSaveNewTodo] = React.useState("");
+
   //BUSCAMOS CUANTOS TODOS ESTAN MARCADOS COMO COMPLETADOS
   const completedTodos = todos.filter(todo => todo.completed).length;
   //CUANTOS TODOS EXISTEN ACTUALMENTE
   const totalTodos = todos.length;
 
   //BUSCADOR DE LOS TODOS 
-  const searchedTodos = todos.filter(
-    (todo) => {
-      const todoText = todo.text.toLowerCase();
-      const searchText = searchValue.toLowerCase();
-      return todoText.includes(searchText);
-    }
-  );
+
+  const searchedTodos = todos.filter((todo) => {
+    const todoText = todo.text.toLowerCase();
+    const searchText =  searchValue.toLowerCase();
+    return todoText.includes(searchText);
+  });
 
   //MARCAMOS O DESMARCAMOS LOS TODOS COMPLETADOS
   const completeTodo = (text) => {
@@ -52,6 +55,16 @@ function TodoProvider({children}){
     saveTodos(newTodos)
   }
 
+  //AGREGAR UN TODO
+  const addTodo =  (text) =>{
+    const newTodos = [...todos];
+    newTodos.push({
+      text: text,
+      complete: false,
+    })
+    saveTodos(newTodos);
+  }
+
     return (
         <TodoContext.Provider
         value={{
@@ -63,7 +76,12 @@ function TodoProvider({children}){
             setSearchValue,
             searchedTodos,
             completeTodo,
-            deleteTodo
+            deleteTodo,
+            openModal,
+            setOpenModal,
+            saveNewTodo,
+            setSaveNewTodo,
+            addTodo,
         }}>
           {children}
         </TodoContext.Provider>

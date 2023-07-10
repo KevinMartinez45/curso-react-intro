@@ -1,13 +1,21 @@
-.CreateTodoButton {
-  background-color: #61DAFA;
-  color: #FAFAFA;
-  padding: 10px 20px;
-  font-size: 20px;
-  font-weight: bold;
-  border: none;
-  cursor: pointer;
-  }
-  
-  .CreateTodoButton:hover {
-     transform: scale(1.1);
-  }
+.CreateTodoButton{
+  width: fit-content;
+  color: rgb(0, 0, 0);
+  font-size: var(--xsm);
+  padding: .7em 1em;
+  border-radius: 1.5em;
+  transition: .3s;
+  box-shadow: 0 0px 10px rgba(0, 0, 0, 0.349);
+
+  position: relative;
+  margin-top: 30px;
+}
+.CreateTodoButton{
+  background-image: linear-gradient(to left, #fffecb, #d4f7ff, #c4ffd6);;
+  border: 1px solid var(--light-purple);
+}
+
+.CreateTodoButton:hover{
+  background-color: var(--purple);
+  border: 1px solid #907deead;
+}

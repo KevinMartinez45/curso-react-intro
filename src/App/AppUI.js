@@ -12,6 +12,8 @@ import { TodoCreateButton } from '../TodoCreateButton'
 import { TodosLoading } from '../TodoIcon/LoadingTodosIcon';
 import { SadIcon }  from '../TodoIcon/SadIcon';
 import { NotFoundIcon } from '../TodoIcon/NotFoundIcon';
+import { TodoForm } from '../TodoForm';
+import { Modal } from '../Modal';
 import { TodoContext } from '../TodoContext';
 
 
@@ -22,18 +24,21 @@ function AppUI({}){
     error,
     searchedTodos,
     completeTodo,
-    deleteTodo
+    deleteTodo,
+    openModal,
+    setOpenModal,
   } = React.useContext(TodoContext)
 
     return (
 
     <React.Fragment >
+      
       <ContainerPadre>
         <ContainerAgregar>
           
           <TodoCounter />
           <InputNewTodo />
-          <TodoCreateButton />
+          <TodoCreateButton/>
         
         </ContainerAgregar>
         
@@ -58,6 +63,14 @@ function AppUI({}){
         </ContainerMostrar>    
           
         </ContainerPadre>
+
+        {openModal && (
+          <Modal>
+            <TodoForm />
+
+          </Modal>
+        )} 
+
     </React.Fragment>)
     
 }
